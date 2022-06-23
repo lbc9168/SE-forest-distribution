@@ -51,4 +51,17 @@ SE_ct_presence_07to17[, sum_var_list2] <- mapply(
 )
 
 ## Select STATECD, COUNTYCD, and their presence percentage
+SE_ct_presence_77to87 <- SE_ct_presence_77to87 %>% 
+  select(STATECD, COUNTYCD, S_1_pct, S_2_pct, H_2527_pct, H_2628_pct, H_31_pct, H_32_pct, H_34_pct, H_35_pct)
+  
 
+SE_ct_presence_07to17 <- SE_ct_presence_07to17 %>% 
+  select(STATECD, COUNTYCD, S_1_pct, S_2_pct, H_2527_pct, H_2628_pct, H_31_pct, H_32_pct, H_34_pct, H_35_pct)
+
+SE_ct_presence_07to17$FIPS = 1000*SE_ct_presence_07to17$STATECD + SE_ct_presence_07to17$COUNTYCD
+SE_ct_presence_77to87$FIPS = 1000*SE_ct_presence_77to87$STATECD + SE_ct_presence_77to87$COUNTYCD
+
+## Export distribution data
+library(foreign)
+write.csv(SE_ct_presence_77to87, "SE_ct_presence_77to87.csv")
+write.csv(SE_ct_presence_07to17, "SE_ct_presence_07to17.csv")

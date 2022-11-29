@@ -25,6 +25,7 @@ SE_reg$presence_cat[SE_reg$S_1 == 0 & SE_reg$S_2 == 0 & SE_reg$H_status > 0] = 3
 SE_reg$presence_cat[SE_reg$S_1 == 1 & SE_reg$S_2 == 1 & SE_reg$H_status == 0] = 4
 SE_reg$presence_cat[(SE_reg$S_1 == 1 | SE_reg$S_2 == 1) & SE_reg$H_status > 0] = 5
 
+library(tidyverse)
 SE_reg %>% count(presence_cat)
 
 library(foreign)
@@ -45,24 +46,8 @@ SE_reg$presence_cat_2[SE_reg$S_1 == 1 & SE_reg$S_2 == 0 & SE_reg$H_status > 0] =
 SE_reg$presence_cat_2[SE_reg$S_1 == 0 & SE_reg$S_2 == 1 & SE_reg$H_status > 0] = 6
 SE_reg$presence_cat_2[SE_reg$S_1 == 1 & SE_reg$S_2 == 1 & SE_reg$H_status > 0] = 7
 
-SE_reg %>% count(presence_cat_2)
-
-library(foreign)
-write.dta(SE_reg, "SE_reg_221122.dta")
-
-
-## Combinations for softwood: 0: others, 1: longleaf planted, 2: shortleaf planted
-##                            3: natural longleaf 4: natural shortleaf 5:
-
 library(tidyverse)
-SE_reg$presence_cat_3 = 0
-SE_reg$presence_cat_3[SE_reg$S_1 == 1 & SE_reg$S_2 == 0 & SE_reg$STDORGCD == 1] = 1
-SE_reg$presence_cat_3[SE_reg$S_1 == 0 & SE_reg$S_2 == 1 & SE_reg$STDORGCD == 1] = 2
-SE_reg$presence_cat_3[SE_reg$S_1 == 1 & SE_reg$S_2 == 0 & SE_reg$STDORGCD == 0] = 3
-SE_reg$presence_cat_3[SE_reg$S_1 == 0 & SE_reg$S_2 == 1 & SE_reg$STDORGCD == 0] = 4
-SE_reg$presence_cat_3[SE_reg$S_1 == 1 & SE_reg$S_2 == 1 & SE_reg$STDORGCD == 0] = 5
-
-SE_reg %>% count(presence_cat_3)
+SE_reg %>% count(presence_cat_2)
 
 library(foreign)
 write.dta(SE_reg, "SE_reg_221122.dta")
